@@ -1,6 +1,5 @@
 const screens = {
   intake: document.querySelector("#screen-intake"),
-  confirm: document.querySelector("#screen-confirm"),
   information: document.querySelector("#screen-information"),
   support: document.querySelector("#screen-support"),
   roleplay: document.querySelector("#screen-roleplay"),
@@ -175,7 +174,6 @@ const transcriptText = document.querySelector("#transcript-text");
 const recordButton = document.querySelector("#record-button");
 
 intakeForm.addEventListener("submit", handleIntake);
-document.querySelector("#start-support").addEventListener("click", startSelectedSupport);
 document.querySelector("#information-roleplay").addEventListener("click", practiceFromInformation);
 document.querySelector("#send-response").addEventListener("click", sendTextResponse);
 document.querySelector("#end-practice").addEventListener("click", showDebrief);
@@ -249,8 +247,7 @@ function handleIntake(event) {
     return;
   }
 
-  renderSetup(triage);
-  showScreen("confirm");
+  startSelectedSupport();
 }
 
 function triageScenario(intake) {
@@ -343,24 +340,6 @@ function buildInformationFocus(category) {
   if (category === "peer") return "Find peer-conflict, bullying, harassment, and respectful-conduct guidance in project documents.";
   if (category === "relationship") return "Find dignity, respect, communication, and classroom-conduct guidance in project documents.";
   return "Find classroom behavior, positive discipline, and student-expectation guidance in project documents.";
-}
-
-function renderSetup(triage) {
-  document.querySelector("#profile-tag").textContent = `${state.profile.teacherName}, ${state.profile.gradeLevel}`;
-  document.querySelector("#support-tag").textContent = helpModeLabels[triage.helpMode] || helpModeLabels.roleplay;
-  document.querySelector("#urgency-tag").textContent = urgencyLabels[triage.urgency] || urgencyLabels.single;
-  document.querySelector("#format-tag").textContent = `${capitalize(state.inputMode)} input, ${capitalize(state.outputMode)} output`;
-  document.querySelector("#confirm-category").textContent = categoryLabels[triage.category];
-  document.querySelector("#confirm-focus").textContent = triage.focus;
-  document.querySelector("#confirm-moment").textContent = triage.setup;
-  document.querySelector("#confirm-details").textContent = state.intake.challenge;
-  document.querySelector("#start-support").textContent = startActionLabel(triage.helpMode);
-}
-
-function startActionLabel(mode) {
-  if (mode === "information") return "View Information";
-  if (mode === "parent") return "Confirm Selection";
-  return "Start Roleplay";
 }
 
 function setUrgency(urgency) {

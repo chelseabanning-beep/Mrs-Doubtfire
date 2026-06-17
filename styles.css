@@ -423,59 +423,16 @@ textarea {
   max-width: 760px;
 }
 
-.tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 26px;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--silver);
-  background: var(--panel);
-  color: var(--slate-700);
-  font-size: 0.86rem;
-  font-weight: 760;
-}
-
-.review-list {
-  border-top: 1px solid var(--silver);
-}
-
-.review-list section {
-  display: grid;
-  grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr);
-  gap: 24px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--silver);
-}
-
-.review-list h3,
 .debrief-section h3 {
   margin: 0;
   color: var(--slate-800);
   font-size: 1rem;
 }
 
-.review-list p,
 .debrief-section p {
   margin: 0;
   color: var(--slate-700);
   line-height: 1.55;
-}
-
-.safety-note {
-  margin: 22px 0 0;
-  padding: 14px 16px;
-  border-left: 4px solid var(--rose);
-  background: #ffffff;
-  color: var(--slate-700);
-  line-height: 1.45;
 }
 
 .guidance-stack {

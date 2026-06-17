@@ -43,7 +43,7 @@ Primary promise: **Confidence to teach.**
 - Future roadmap: parent/guardian conversation flow, more scenario categories, deeper handbook grounding, and richer voice practice.
 
 ## Test Plan
-- Custom scenario happy path: teacher enters calling-out scenario, confirms category/focus, completes roleplay, debrief, retry, and confidence check.
+- Custom scenario happy path: teacher enters calling-out scenario, starts roleplay directly, completes debrief, retry, and confidence check.
 - Vague input: tool asks one helpful follow-up.
 - Empty teacher response: Coach offers a starter line.
 - Harsh/public-shaming response: Coach gently redirects.
