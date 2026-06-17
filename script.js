@@ -209,7 +209,6 @@ document.querySelectorAll("[data-prompt]").forEach((button) => {
   button.addEventListener("click", () => applyStandardPrompt(button.dataset.prompt));
 });
 
-renderProfile();
 setUrgency(state.urgency);
 setHelpMode(state.helpMode);
 setInputMode(state.inputMode);
@@ -368,11 +367,6 @@ function renderSetup(triage) {
   document.querySelector("#confirm-moment").textContent = triage.setup;
   document.querySelector("#confirm-details").textContent = state.intake.challenge;
   document.querySelector("#start-support").textContent = startActionLabel(triage.helpMode);
-}
-
-function renderProfile() {
-  document.querySelector("#profile-name").textContent = state.profile.teacherName;
-  document.querySelector("#profile-grade").textContent = state.profile.gradeLevel;
 }
 
 function startActionLabel(mode) {

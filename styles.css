@@ -166,31 +166,6 @@ h2 {
   line-height: 1.55;
 }
 
-.profile-summary {
-  margin-top: 28px;
-  padding: 16px;
-  border: 1px solid var(--silver);
-  border-radius: 8px;
-  background: #ffffff;
-}
-
-.profile-summary strong,
-.profile-summary span {
-  display: block;
-}
-
-.profile-summary strong {
-  margin-top: 8px;
-  color: var(--slate-800);
-  font-size: 1.18rem;
-}
-
-.profile-summary span {
-  margin-top: 4px;
-  color: var(--muted);
-  font-weight: 720;
-}
-
 .form-panel {
   padding: 28px;
   display: grid;
