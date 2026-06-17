@@ -24,12 +24,12 @@ Primary promise: **Confidence to teach.**
 - Offer classroom challenge options such as calling out, off-task behavior, work refusal, side conversations, transition trouble, peer conflict, disrespectful responses, attention-seeking behavior, and `Other`.
 - Provide a microphone inside the details field so the teacher can dictate scenario details, then review/edit before continuing.
 - Ask when the situation happened with two options: `Single Occurrence` or `Repeated Occurrence`.
-- Ask whether the teacher wants roleplay practice or information. Roleplay uses `Student` and `Coach` turns; information summarizes relevant project-document guidance and sources.
+- Ask whether the teacher wants roleplay practice or information. Roleplay uses a teacher response area with a Coach guidance panel; information summarizes relevant project-document guidance and sources.
 - If `Repeated Occurrence` is selected, reveal a parent/guardian conversation option for the teacher to select. Do not generate the parent conversation in this prototype.
 - If the teacher input is vague, the tool asks one clarifying question.
 - The tool creates a short setup from the selected challenge, category, focus, and what the teacher will practice or review.
 - At the start of a help session, Coach greets the teacher on screen.
-- Teacher practices with labeled `Student` and `Coach` messages, using either text input or browser voice input for teacher replies.
+- Teacher practices with either text input or browser voice input for teacher replies, without a visible chat transcript on the left side.
 - Parent/guardian conversation is only captured as a selected route for now; the actual parent-focused conversation flow is not created yet.
 - Debrief is short and non-scored, focused on relationship plus policy.
 

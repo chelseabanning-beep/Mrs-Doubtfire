@@ -14,7 +14,7 @@ Classroom Coach is a planned web app where new teachers practice common classroo
 - Reveals a parent/guardian conversation option when `Repeated Occurrence` is selected.
 - Records the parent/guardian conversation option as a selected route, but does not create that conversation yet.
 - Greets the teacher at the start of the help session.
-- Runs a short teacher-only roleplay with `Student` and `Coach` messages.
+- Runs a short teacher-only roleplay with a teacher response area and Coach guidance panel.
 - Redirects sensitive scenarios to human and policy support.
 - Ends with a short debrief, retry option, and confidence check.
 

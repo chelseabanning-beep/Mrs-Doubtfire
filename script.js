@@ -168,7 +168,6 @@ const urgencyField = document.querySelector("#urgency");
 const textComposer = document.querySelector("#text-composer");
 const voiceComposer = document.querySelector("#voice-composer");
 const teacherResponse = document.querySelector("#teacher-response");
-const chatThread = document.querySelector("#chat-thread");
 const recordingState = document.querySelector("#recording-state");
 const transcriptText = document.querySelector("#transcript-text");
 const recordButton = document.querySelector("#record-button");
@@ -500,13 +499,11 @@ function startRoleplay() {
   state.transcript = [];
   state.turn = 0;
   state.harshCount = 0;
-  chatThread.innerHTML = "";
   teacherResponse.value = "";
   resetVoiceDraft();
   setInputMode(state.inputMode);
 
   document.querySelector("#roleplay-title").textContent = `Scenario: ${categoryLabels[state.triage.category]}`;
-  document.querySelector("#roleplay-focus").textContent = `Practice focus: ${state.triage.focus}`;
   document.querySelector("#coach-tip").textContent = state.triage.focus;
   document.querySelector("#sample-line").textContent = sampleLineForCategory(state.triage.category);
 
@@ -832,27 +829,7 @@ function resetVoiceDraft() {
 }
 
 function addMessage(speaker, text) {
-  const row = document.createElement("div");
-  row.className = `message-row ${classForSpeaker(speaker)}`;
-
-  const label = document.createElement("p");
-  label.className = "message-label";
-  label.textContent = speaker;
-
-  const bubble = document.createElement("div");
-  bubble.className = "message-bubble";
-  bubble.textContent = text;
-
-  row.append(label, bubble);
-  chatThread.append(row);
-  chatThread.scrollTop = chatThread.scrollHeight;
   state.transcript.push({ speaker, text });
-}
-
-function classForSpeaker(speaker) {
-  if (speaker === "You") return "teacher";
-  if (speaker === "Coach") return "coach";
-  return "student";
 }
 
 function showScreen(name) {

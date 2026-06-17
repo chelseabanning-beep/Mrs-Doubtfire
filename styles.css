@@ -541,39 +541,12 @@ textarea {
   min-height: 610px;
 }
 
-.chat-panel {
-  display: grid;
-  grid-template-rows: 1fr auto;
+.response-panel {
+  display: flex;
+  align-items: center;
   min-width: 0;
   border-right: 1px solid var(--silver);
-}
-
-.chat-thread {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 26px;
-  overflow: auto;
-}
-
-.message-row {
-  display: grid;
-  gap: 6px;
-  max-width: min(78%, 640px);
-}
-
-.message-row.teacher {
-  align-self: flex-end;
-  justify-items: end;
-}
-
-.message-row.coach {
-  align-self: center;
-  max-width: min(88%, 720px);
-}
-
-.message-row.student {
-  align-self: flex-start;
+  padding: 24px;
 }
 
 .message-label {
@@ -585,33 +558,11 @@ textarea {
   text-transform: uppercase;
 }
 
-.message-bubble {
-  padding: 14px 16px;
+.composer-panel {
+  width: 100%;
+  padding: 18px 22px 22px;
   border: 1px solid var(--silver);
   border-radius: 8px;
-  line-height: 1.48;
-}
-
-.student .message-bubble {
-  background: #eceff1;
-  color: var(--slate-800);
-}
-
-.teacher .message-bubble {
-  background: var(--blue-soft);
-  border-color: #a9c9e2;
-  color: #173247;
-}
-
-.coach .message-bubble {
-  background: #ffffff;
-  border-color: var(--rose);
-  color: var(--slate-800);
-}
-
-.composer-panel {
-  padding: 18px 22px 22px;
-  border-top: 1px solid var(--silver);
   background: var(--warm-white);
 }
 
@@ -826,7 +777,7 @@ textarea {
     text-align: left;
   }
 
-  .chat-panel {
+  .response-panel {
     border-right: 0;
     border-bottom: 1px solid var(--silver);
   }
@@ -854,7 +805,7 @@ textarea {
   }
 
   .roleplay-header,
-  .chat-thread,
+  .response-panel,
   .composer-panel,
   .coach-panel {
     padding: 18px;
@@ -862,11 +813,6 @@ textarea {
 
   h2 {
     font-size: 2rem;
-  }
-
-  .review-list section {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 
   .segmented {
@@ -884,10 +830,6 @@ textarea {
 
   .segment:last-child {
     border-bottom: 0;
-  }
-
-  .message-row {
-    max-width: 92%;
   }
 
   .split-actions,
