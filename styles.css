@@ -535,6 +535,55 @@ textarea {
   text-align: right;
 }
 
+.scenario-block {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 22px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--silver);
+  background: #ffffff;
+}
+
+.scenario-block h3 {
+  margin: 5px 0 10px;
+  color: var(--slate-800);
+  font-size: 1.32rem;
+}
+
+.scenario-block p {
+  margin: 0;
+}
+
+.scenario-block > div:first-child p:last-child {
+  color: var(--slate-700);
+  line-height: 1.5;
+}
+
+.scenario-dialogue {
+  display: grid;
+  gap: 10px;
+}
+
+.scenario-dialogue p {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--slate-700);
+  line-height: 1.45;
+}
+
+.scenario-dialogue strong {
+  color: var(--slate-800);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .roleplay-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -777,6 +826,10 @@ textarea {
     text-align: left;
   }
 
+  .scenario-block {
+    grid-template-columns: 1fr;
+  }
+
   .response-panel {
     border-right: 0;
     border-bottom: 1px solid var(--silver);
@@ -805,6 +858,7 @@ textarea {
   }
 
   .roleplay-header,
+  .scenario-block,
   .response-panel,
   .composer-panel,
   .coach-panel {
@@ -813,6 +867,11 @@ textarea {
 
   h2 {
     font-size: 2rem;
+  }
+
+  .scenario-dialogue p {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .segmented {

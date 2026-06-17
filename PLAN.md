@@ -29,6 +29,7 @@ Primary promise: **Confidence to teach.**
 - If the teacher input is vague, the tool asks one clarifying question.
 - The tool creates a short setup from the selected challenge, category, focus, and what the teacher will practice or review.
 - At the start of a help session, Coach greets the teacher on screen.
+- Practice starts with an adaptive scenario block that summarizes the classroom moment and shows a short student/teacher dialogue.
 - Teacher practices with either text input or browser voice input for teacher replies, without a visible chat transcript on the left side.
 - Parent/guardian conversation is only captured as a selected route for now; the actual parent-focused conversation flow is not created yet.
 - Debrief is short and non-scored, focused on relationship plus policy.

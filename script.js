@@ -168,6 +168,11 @@ const urgencyField = document.querySelector("#urgency");
 const textComposer = document.querySelector("#text-composer");
 const voiceComposer = document.querySelector("#voice-composer");
 const teacherResponse = document.querySelector("#teacher-response");
+const scenarioTitle = document.querySelector("#scenario-title");
+const scenarioDescription = document.querySelector("#scenario-description");
+const scenarioStudentLine = document.querySelector("#scenario-student-line");
+const scenarioTeacherLine = document.querySelector("#scenario-teacher-line");
+const scenarioFollowupLine = document.querySelector("#scenario-followup-line");
 const recordingState = document.querySelector("#recording-state");
 const transcriptText = document.querySelector("#transcript-text");
 const recordButton = document.querySelector("#record-button");
@@ -504,6 +509,7 @@ function startRoleplay() {
   setInputMode(state.inputMode);
 
   document.querySelector("#roleplay-title").textContent = `Scenario: ${categoryLabels[state.triage.category]}`;
+  renderPracticeScenario();
   document.querySelector("#coach-tip").textContent = state.triage.focus;
   document.querySelector("#sample-line").textContent = sampleLineForCategory(state.triage.category);
 
@@ -553,6 +559,43 @@ function sampleLineForCategory(category) {
   if (category === "peer") return "\"I am going to hear both sides, then we will choose the next work step.\"";
   if (category === "relationship") return "\"I want to understand what feels hard, and I still need us back with the task.\"";
   return "\"I want to hear your thinking, and I need one voice at a time.\"";
+}
+
+function renderPracticeScenario() {
+  const category = state.triage.category;
+  const exchange = scenarioExchangeForCategory(category);
+  const moment = state.intake.moment || "Classroom moment";
+  const challenge = state.intake.challenge || "A student needs a calm, clear response before returning to the learning task.";
+
+  scenarioTitle.textContent = `${categoryLabels[category]} scenario`;
+  scenarioDescription.textContent = `${moment}: ${challenge}`;
+  scenarioStudentLine.textContent = exchange.student;
+  scenarioTeacherLine.textContent = exchange.teacher;
+  scenarioFollowupLine.textContent = exchange.followup;
+}
+
+function scenarioExchangeForCategory(category) {
+  if (category === "peer") {
+    return {
+      student: "They started it. I am not working with them.",
+      teacher: "I am going to hear both sides, then we will choose the next work step.",
+      followup: "Fine, but I want to explain what happened.",
+    };
+  }
+
+  if (category === "relationship") {
+    return {
+      student: "Why are you always picking on me?",
+      teacher: "I want to understand what feels hard, and I still need us back with the task.",
+      followup: "Okay, but I still think you are mad at me.",
+    };
+  }
+
+  return {
+    student: "But I knew the answer. Why can't I just say it?",
+    teacher: "I want to hear your thinking, and I need one voice at a time.",
+    followup: "Okay. Can I write it down if I know it?",
+  };
 }
 
 function sendTextResponse() {
