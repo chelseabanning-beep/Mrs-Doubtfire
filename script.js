@@ -193,10 +193,6 @@ document.querySelectorAll("[data-go]").forEach((button) => {
   button.addEventListener("click", () => showScreen(button.dataset.go));
 });
 
-document.querySelectorAll("[data-help-mode]").forEach((button) => {
-  button.addEventListener("click", () => setHelpMode(button.dataset.helpMode));
-});
-
 document.querySelectorAll("[data-prompt]").forEach((button) => {
   button.addEventListener("click", () => applyStandardPrompt(button.dataset.prompt));
 });
@@ -372,11 +368,7 @@ function setUrgency(urgency) {
 
   state.urgency = urgency;
   urgencyField.value = urgency;
-  const repeated = urgency === "repeated-pattern";
-  document.querySelector("#parent-mode-card").classList.toggle("is-hidden", !repeated);
-  document.querySelector("#support-mode-grid").classList.toggle("has-parent-mode", repeated);
-
-  if (!repeated && state.helpMode === "parent") {
+  if (urgency !== "repeated-pattern" && state.helpMode === "parent") {
     setHelpMode("roleplay");
   }
 }
@@ -386,11 +378,6 @@ function setHelpMode(mode) {
   if (mode === "parent" && state.urgency !== "repeated-pattern") return;
 
   state.helpMode = mode;
-  document.querySelectorAll("[data-help-mode]").forEach((button) => {
-    const selected = button.dataset.helpMode === mode;
-    button.classList.toggle("is-selected", selected);
-    button.setAttribute("aria-pressed", String(selected));
-  });
 }
 
 function setInputMode(mode) {

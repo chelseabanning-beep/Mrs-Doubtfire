@@ -212,14 +212,6 @@ h2 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.support-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.support-grid.has-parent-mode {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .option-card {
   min-height: 86px;
   border: 1px solid var(--silver);
@@ -864,9 +856,7 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .choice-grid.three,
-  .support-grid,
-  .support-grid.has-parent-mode {
+  .choice-grid.three {
     grid-template-columns: 1fr;
   }
 
