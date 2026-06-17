@@ -166,10 +166,138 @@ h2 {
   line-height: 1.55;
 }
 
+.profile-summary {
+  margin-top: 28px;
+  padding: 16px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.profile-summary strong,
+.profile-summary span {
+  display: block;
+}
+
+.profile-summary strong {
+  margin-top: 8px;
+  color: var(--slate-800);
+  font-size: 1.18rem;
+}
+
+.profile-summary span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 720;
+}
+
 .form-panel {
   padding: 28px;
   display: grid;
   gap: 12px;
+}
+
+.form-section {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.form-section h3 {
+  margin: 6px 0 0;
+  color: var(--slate-800);
+  font-size: 1.08rem;
+}
+
+.form-section fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.format-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.choice-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.choice-grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.choice-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.support-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.support-grid.has-parent-mode {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.option-card {
+  min-height: 86px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: var(--panel-strong);
+  color: var(--slate-800);
+  padding: 12px;
+  text-align: left;
+}
+
+.option-card:hover,
+.option-card.is-selected {
+  border-color: var(--blue-dark);
+  box-shadow: 0 0 0 3px rgba(127, 174, 212, 0.22);
+}
+
+.option-card.is-selected {
+  background: var(--blue-soft);
+}
+
+.option-card strong,
+.option-card span {
+  display: block;
+}
+
+.option-card strong {
+  margin-bottom: 7px;
+  color: var(--slate-800);
+  font-size: 0.96rem;
+}
+
+.option-card span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.clarify-box {
+  padding: 14px;
+  border: 1px solid var(--rose);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.clarify-box label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.is-hidden {
+  display: none !important;
 }
 
 label,
@@ -178,6 +306,7 @@ legend {
   font-weight: 700;
 }
 
+input[type="text"],
 select,
 textarea {
   width: 100%;
@@ -189,6 +318,7 @@ textarea {
   outline: none;
 }
 
+input[type="text"]:focus,
 select:focus,
 textarea:focus {
   border-color: var(--blue-dark);
@@ -350,6 +480,66 @@ textarea {
   line-height: 1.45;
 }
 
+.guidance-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.guidance-card {
+  padding: 18px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.guidance-card.coach-greeting {
+  border-color: var(--rose);
+}
+
+.guidance-card h3 {
+  margin: 0 0 10px;
+  color: var(--slate-800);
+}
+
+.guidance-card p,
+.guidance-card li,
+.document-note {
+  color: var(--slate-700);
+  line-height: 1.55;
+}
+
+.guidance-card p {
+  margin: 0 0 10px;
+}
+
+.guidance-card ul {
+  margin: 12px 0;
+  padding-left: 20px;
+}
+
+.source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.source-list span {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 5px 9px;
+  border: 1px solid var(--silver);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 720;
+}
+
+.document-note {
+  margin: 4px 0 0;
+}
+
 .split-actions {
   justify-content: space-between;
 }
@@ -422,6 +612,11 @@ textarea {
   justify-items: end;
 }
 
+.message-row.coach {
+  align-self: center;
+  max-width: min(88%, 720px);
+}
+
 .message-row.student {
   align-self: flex-start;
 }
@@ -451,6 +646,12 @@ textarea {
   background: var(--blue-soft);
   border-color: #a9c9e2;
   color: #173247;
+}
+
+.coach .message-bubble {
+  background: #ffffff;
+  border-color: var(--rose);
+  color: var(--slate-800);
 }
 
 .composer-panel {
@@ -657,6 +858,13 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .format-columns,
+  .choice-grid.three,
+  .support-grid,
+  .support-grid.has-parent-mode {
+    grid-template-columns: 1fr;
+  }
+
   .intro-panel {
     min-height: auto;
   }
@@ -710,6 +918,10 @@ textarea {
   }
 
   .segmented {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-grid.two {
     grid-template-columns: 1fr;
   }
 
