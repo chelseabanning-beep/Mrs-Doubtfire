@@ -181,7 +181,6 @@ document.querySelector("#send-response").addEventListener("click", sendTextRespo
 document.querySelector("#end-practice").addEventListener("click", showDebrief);
 document.querySelector("#retry-practice").addEventListener("click", startRoleplay);
 document.querySelector("#finish-button").addEventListener("click", completeSession);
-document.querySelector("#use-example").addEventListener("click", () => applyStandardPrompt("calling-out"));
 document.querySelector("#speak-instead").addEventListener("click", () => setInputMode("voice"));
 document.querySelector("#type-instead").addEventListener("click", () => setInputMode("text"));
 document.querySelector("#try-again").addEventListener("click", resetVoiceDraft);
