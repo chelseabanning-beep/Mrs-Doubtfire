@@ -7,13 +7,13 @@ Classroom Coach is a planned web app where new teachers practice common classroo
 - Starts with a guided classroom-scenario intake.
 - Uses profile context for teacher name and grade instead of asking every session.
 - Shows the privacy reminder before the teacher describes what happened.
-- Lets the teacher choose text or voice input and Coach text or voice output before the scenario begins.
 - Offers quick-select challenge options, including `Other`, with editable details.
+- Adds a microphone inside the details box for voice entry, while keeping the dictated text editable.
 - Lets the teacher choose when the situation happened, including `A repeated pattern`.
 - Lets the teacher choose `Roleplay` or `Information` from policy/procedure documents.
 - Reveals a parent/guardian conversation option when `A repeated pattern` is selected.
 - Records the parent/guardian conversation option as a selected route, but does not create that conversation yet.
-- Greets the teacher at the start of the help session using the selected output mode.
+- Greets the teacher at the start of the help session.
 - Runs a short teacher-only roleplay with `Student` and `Coach` messages.
 - Redirects sensitive scenarios to human and policy support.
 - Ends with a short debrief, retry option, and confidence check.

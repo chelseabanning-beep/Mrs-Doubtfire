@@ -26,6 +26,8 @@ const state = {
   harshCount: 0,
   recognition: null,
   isListening: false,
+  detailsRecognition: null,
+  isListeningForDetails: false,
 };
 
 const categoryLabels = {
@@ -165,6 +167,8 @@ const documentGuidance = {
 
 const intakeForm = document.querySelector("#intake-form");
 const challengeField = document.querySelector("#challenge-details");
+const detailsMicButton = document.querySelector("#details-mic-button");
+const detailsVoiceStatus = document.querySelector("#details-voice-status");
 const urgencyField = document.querySelector("#urgency");
 const textComposer = document.querySelector("#text-composer");
 const voiceComposer = document.querySelector("#voice-composer");
@@ -187,18 +191,11 @@ document.querySelector("#type-instead").addEventListener("click", () => setInput
 document.querySelector("#try-again").addEventListener("click", resetVoiceDraft);
 document.querySelector("#use-response").addEventListener("click", sendVoiceResponse);
 recordButton.addEventListener("click", startVoiceInput);
+detailsMicButton.addEventListener("click", toggleDetailsVoiceInput);
 urgencyField.addEventListener("change", (event) => setUrgency(event.target.value));
 
 document.querySelectorAll("[data-go]").forEach((button) => {
   button.addEventListener("click", () => showScreen(button.dataset.go));
-});
-
-document.querySelectorAll("[data-input-mode]").forEach((button) => {
-  button.addEventListener("click", () => setInputMode(button.dataset.inputMode));
-});
-
-document.querySelectorAll("[data-output-mode]").forEach((button) => {
-  button.addEventListener("click", () => setOutputMode(button.dataset.outputMode));
 });
 
 document.querySelectorAll("[data-help-mode]").forEach((button) => {
@@ -212,11 +209,11 @@ document.querySelectorAll("[data-prompt]").forEach((button) => {
 setUrgency(state.urgency);
 setHelpMode(state.helpMode);
 setInputMode(state.inputMode);
-setOutputMode(state.outputMode);
 applyStandardPrompt("calling-out");
 
 function handleIntake(event) {
   event.preventDefault();
+  stopDetailsVoiceInput();
 
   const clarifyAnswer = document.querySelector("#clarify-answer").value.trim();
   const intake = {
@@ -413,26 +410,6 @@ function setInputMode(mode) {
 
   if (mode === "text") stopVoiceInput();
 
-  document.querySelectorAll("[data-input-mode]").forEach((button) => {
-    const selected = button.dataset.inputMode === mode;
-    button.classList.toggle("is-selected", selected);
-    button.setAttribute("aria-pressed", String(selected));
-  });
-}
-
-function setOutputMode(mode) {
-  if (!["text", "voice"].includes(mode)) return;
-
-  state.outputMode = mode;
-  document.querySelectorAll("[data-output-mode]").forEach((button) => {
-    const selected = button.dataset.outputMode === mode;
-    button.classList.toggle("is-selected", selected);
-    button.setAttribute("aria-pressed", String(selected));
-  });
-
-  if (mode === "text" && window.speechSynthesis) {
-    window.speechSynthesis.cancel();
-  }
 }
 
 function selectedPromptMoment() {
@@ -750,6 +727,73 @@ function completeSession() {
       <p>Confidence check recorded locally as ${confidence} out of 5. No transcript was saved. Refreshing the page clears this practice.</p>
     </section>
   `;
+}
+
+function toggleDetailsVoiceInput() {
+  const SpeechRecognition = getSpeechRecognition();
+
+  if (!SpeechRecognition) {
+    detailsVoiceStatus.textContent = "Voice entry is not available in this browser. You can type details instead.";
+    challengeField.focus();
+    return;
+  }
+
+  if (!state.detailsRecognition) {
+    state.detailsRecognition = new SpeechRecognition();
+    state.detailsRecognition.continuous = false;
+    state.detailsRecognition.interimResults = true;
+    state.detailsRecognition.lang = "en-US";
+
+    state.detailsRecognition.onstart = () => {
+      state.isListeningForDetails = true;
+      detailsMicButton.classList.add("is-recording");
+      detailsMicButton.setAttribute("aria-pressed", "true");
+      detailsVoiceStatus.textContent = "Listening for details. Avoid student names or private identifiers.";
+    };
+
+    state.detailsRecognition.onresult = (event) => {
+      let draft = "";
+      for (let index = event.resultIndex; index < event.results.length; index += 1) {
+        draft += event.results[index][0].transcript;
+      }
+      if (draft.trim()) {
+        challengeField.value = draft.trim();
+      }
+    };
+
+    state.detailsRecognition.onerror = () => {
+      state.isListeningForDetails = false;
+      detailsMicButton.classList.remove("is-recording");
+      detailsMicButton.setAttribute("aria-pressed", "false");
+      detailsVoiceStatus.textContent = "Voice entry stopped. You can type or try the microphone again.";
+    };
+
+    state.detailsRecognition.onend = () => {
+      state.isListeningForDetails = false;
+      detailsMicButton.classList.remove("is-recording");
+      detailsMicButton.setAttribute("aria-pressed", "false");
+      detailsVoiceStatus.textContent = "Review and edit the dictated details before building support.";
+      challengeField.focus();
+    };
+  }
+
+  if (state.isListeningForDetails) {
+    stopDetailsVoiceInput();
+  } else {
+    stopVoiceInput();
+    state.detailsRecognition.start();
+  }
+}
+
+function stopDetailsVoiceInput() {
+  if (!state.detailsRecognition || !state.isListeningForDetails) {
+    state.isListeningForDetails = false;
+    detailsMicButton.classList.remove("is-recording");
+    detailsMicButton.setAttribute("aria-pressed", "false");
+    return;
+  }
+
+  state.detailsRecognition.stop();
 }
 
 function getSpeechRecognition() {

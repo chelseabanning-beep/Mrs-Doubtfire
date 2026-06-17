@@ -77,46 +77,20 @@
             </div>
           </section>
 
-          <section class="form-section format-options" aria-label="Text and voice options">
-            <div class="format-columns">
-              <fieldset>
-                <legend>Teacher input</legend>
-                <div class="choice-grid two">
-                  <button class="option-card is-selected" type="button" data-input-mode="text" aria-pressed="true">
-                    <strong>Text</strong>
-                    <span>Type teacher responses.</span>
-                  </button>
-                  <button class="option-card" type="button" data-input-mode="voice" aria-pressed="false">
-                    <strong>Voice</strong>
-                    <span>Speak, then review the draft.</span>
-                  </button>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <legend>Coach output</legend>
-                <div class="choice-grid two">
-                  <button class="option-card is-selected" type="button" data-output-mode="text" aria-pressed="true">
-                    <strong>Text</strong>
-                    <span>Read Coach messages.</span>
-                  </button>
-                  <button class="option-card" type="button" data-output-mode="voice" aria-pressed="false">
-                    <strong>Voice</strong>
-                    <span>Hear the opening greeting.</span>
-                  </button>
-                </div>
-              </fieldset>
-            </div>
-          </section>
-
           <label for="challenge-details">Details</label>
-          <textarea
-            id="challenge-details"
-            name="challenge-details"
-            rows="5"
-            placeholder="Add a few details about what the student or class is doing. Keep names and sensitive details out."
-            required
-          ></textarea>
+          <div class="textarea-with-action">
+            <textarea
+              id="challenge-details"
+              name="challenge-details"
+              rows="5"
+              placeholder="Add a few details about what the student or class is doing. Keep names and sensitive details out."
+              required
+            ></textarea>
+            <button class="mic-button detail-mic-button" type="button" id="details-mic-button" aria-label="Use voice for details" aria-pressed="false">
+              <span class="mic-mark" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="field-hint" id="details-voice-status">Use the microphone to dictate details, then edit before building support.</p>
 
           <label for="urgency">When did it happen?</label>
           <select id="urgency" name="urgency" required>

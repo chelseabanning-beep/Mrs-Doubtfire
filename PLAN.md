@@ -21,14 +21,14 @@ Primary promise: **Confidence to teach.**
 - Start with a guided form, not a scenario picker.
 - Show profile context quietly, but do not make the teacher re-enter name or grade for each practice session.
 - Show the no-student-names/privacy reminder as plain text before the teacher starts describing what happened.
-- Ask for session format at the beginning: teacher input can be text or voice, and Coach output can be text or voice.
 - Offer classroom challenge options such as calling out, off-task behavior, work refusal, side conversations, transition trouble, peer conflict, disrespectful responses, attention-seeking behavior, and `Other`.
+- Provide a microphone inside the details field so the teacher can dictate scenario details, then review/edit before continuing.
 - Ask when the situation happened: happening right now, earlier today, this week, a past situation, or a repeated pattern.
 - Ask whether the teacher wants roleplay practice or information. Roleplay uses `Student` and `Coach` turns; information summarizes relevant project-document guidance and sources.
 - If `A repeated pattern` is selected, reveal a parent/guardian conversation option for the teacher to select. Do not generate the parent conversation in this prototype.
 - If the teacher input is vague, the tool asks one clarifying question.
 - The tool creates a short setup from the selected challenge, category, focus, and what the teacher will practice or review.
-- At the start of a help session, Coach greets the teacher using the selected output format. Teacher replies can use the selected input format.
+- At the start of a help session, Coach greets the teacher on screen.
 - Teacher practices with labeled `Student` and `Coach` messages, using either text input or browser voice input for teacher replies.
 - Parent/guardian conversation is only captured as a selected route for now; the actual parent-focused conversation flow is not created yet.
 - Debrief is short and non-scored, focused on relationship plus policy.
@@ -52,11 +52,11 @@ Primary promise: **Confidence to teach.**
 - Privacy reminder check: no student names requested, no transcripts saved, and the reminder appears before the scenario description fields.
 - Profile check: teacher name and grade come from the profile, not the repeated help form.
 - Challenge option check: selecting a standard classroom issue prefills editable session details and a suggested response skill goal; choosing `Other` provides a blank detail space.
-- Format check: text/voice input and output are selected before scenario details, and the opening greeting uses the selected output mode.
+- Details voice-entry check: the microphone appears inside the details box, can capture dictated details when supported by the browser, and leaves the text editable before support is built.
 - Repeated-pattern check: selecting `A repeated pattern` reveals the parent/guardian conversation option; choosing it records the selection and shows a short notice, without creating a parent conversation.
 
 ## Assumptions
 - Demo case: teacher enters a calling-out-during-lesson scenario.
 - App is optimized for laptop browser and a 2-3 minute live demo.
 - V1 uses sample policy rules, not the full handbook.
-- V1 may use lightweight profile context, basic browser voice input, and basic voice greeting output; no saved history, dashboard, or full policy upload in v1.
+- V1 may use lightweight profile context and basic browser voice input; no saved history, dashboard, or full policy upload in v1.
