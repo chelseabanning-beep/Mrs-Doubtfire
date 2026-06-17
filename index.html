@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coach Doubtfire</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="brand-bar" aria-label="Prototype header">
+        <div>
+          <p class="eyebrow">AI Innovation Lab</p>
+          <h1>Coach Doubtfire</h1>
+        </div>
+        <nav class="screen-rail" aria-label="Prototype screens">
+          <span class="rail-dot is-active" data-rail="intake">Intake</span>
+          <span class="rail-dot" data-rail="confirm">Confirm</span>
+          <span class="rail-dot" data-rail="roleplay">Roleplay</span>
+          <span class="rail-dot" data-rail="debrief">Debrief</span>
+        </nav>
+      </header>
+
+      <section class="screen is-active" id="screen-intake" aria-labelledby="intake-title">
+        <div class="two-column intake-grid">
+          <div class="intro-panel">
+            <p class="eyebrow">Teacher practice space</p>
+            <h2 id="intake-title">What classroom moment do you want to practice?</h2>
+            <p class="lede">Describe a real situation without using student names.</p>
+            <div class="quiet-note">
+              Coach Doubtfire helps teachers rehearse words, tone, and next steps before trying them in class.
+            </div>
+          </div>
+
+          <form class="form-panel" id="intake-form">
+            <label for="grade-level">Grade level</label>
+            <select id="grade-level" name="grade-level">
+              <option>K-2</option>
+              <option>3-5</option>
+              <option selected>6-8</option>
+              <option>9-12</option>
+            </select>
+
+            <label for="classroom-moment">What happened?</label>
+            <textarea id="classroom-moment" name="classroom-moment" rows="6" placeholder="Briefly describe the classroom moment."></textarea>
+
+            <label for="practice-goal">What do you want to practice?</label>
+            <select id="practice-goal" name="practice-goal">
+              <option value="Setting a boundary while keeping the relationship positive." selected>Boundary + positive relationship</option>
+              <option value="Redirecting off-task behavior calmly.">Calm off-task redirection</option>
+              <option value="De-escalating a frustrated student.">Student de-escalation</option>
+              <option value="Encouraging participation without pressure.">Participation without pressure</option>
+              <option value="Repairing after a hard moment.">Repair after a hard moment</option>
+            </select>
+
+            <fieldset class="segmented-field">
+              <legend>How do you want to practice?</legend>
+              <div class="segmented" role="radiogroup" aria-label="Practice mode">
+                <label class="segment is-selected">
+                  <input type="radio" name="practice-mode" value="text" checked>
+                  <span>Type my response</span>
+                </label>
+                <label class="segment">
+                  <input type="radio" name="practice-mode" value="voice">
+                  <span>Speak my response</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="button-row">
+              <button class="button secondary" type="button" id="use-example">Use example scenario</button>
+              <button class="button primary" type="submit">Start Practice</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-confirm" aria-labelledby="confirm-title">
+        <div class="review-shell">
+          <div class="screen-heading">
+            <p class="eyebrow">Scenario confirmation</p>
+            <h2 id="confirm-title">Here&rsquo;s what we&rsquo;ll practice</h2>
+          </div>
+
+          <div class="tag-row" aria-label="Scenario tags">
+            <span class="tag" id="grade-tag">Grade 6-8</span>
+            <span class="tag">Behavior support</span>
+            <span class="tag" id="mode-tag-confirm">Text practice</span>
+          </div>
+
+          <div class="review-list">
+            <section>
+              <h3>Classroom moment</h3>
+              <p id="confirm-moment">A student keeps calling out during direct instruction, and I'm losing the flow of the lesson.</p>
+            </section>
+            <section>
+              <h3>Coaching focus</h3>
+              <p id="confirm-focus">Setting a boundary while keeping the relationship positive.</p>
+            </section>
+            <section>
+              <h3>Student tone</h3>
+              <p>Mildly resistant, bored, and testing whether the boundary is real.</p>
+            </section>
+          </div>
+
+          <p class="safety-note">Use fictionalized details only. Do not include student names.</p>
+
+          <div class="button-row split-actions">
+            <button class="button secondary" type="button" data-go="intake">Edit Details</button>
+            <button class="button primary" type="button" data-go="roleplay">Start Roleplay</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-roleplay" aria-labelledby="roleplay-title">
+        <div class="roleplay-shell">
+          <div class="roleplay-header">
+            <div>
+              <p class="eyebrow">Live practice</p>
+              <h2 id="roleplay-title">Scenario: Calling out during direct instruction</h2>
+            </div>
+            <div class="header-facts">
+              <span>Practice focus: Set a boundary while keeping connection</span>
+              <span class="tag" id="mode-tag-roleplay">Text practice</span>
+            </div>
+          </div>
+
+          <div class="roleplay-layout">
+            <section class="chat-panel" aria-label="Roleplay chat">
+              <div class="chat-thread" id="chat-thread">
+                <div class="message-row student">
+                  <p class="message-label">Student</p>
+                  <div class="message-bubble">&ldquo;But I already know this. Why do we have to do it again?&rdquo;</div>
+                </div>
+                <div class="message-row teacher">
+                  <p class="message-label">You</p>
+                  <div class="message-bubble">&ldquo;I hear that you feel ready. Right now I need you to let others think.&rdquo;</div>
+                </div>
+                <div class="message-row student">
+                  <p class="message-label">Student</p>
+                  <div class="message-bubble">&ldquo;Fine, but this is boring.&rdquo;</div>
+                </div>
+              </div>
+
+              <div class="composer-panel text-mode" id="text-composer">
+                <label for="teacher-response">Your response</label>
+                <textarea id="teacher-response" rows="5" placeholder="Write what you would say next."></textarea>
+                <div class="button-row split-actions">
+                  <div class="left-actions">
+                    <button class="button secondary" type="button" id="speak-instead">Speak instead</button>
+                    <button class="button secondary" type="button" data-go="debrief">End Practice</button>
+                  </div>
+                  <button class="button primary" type="button" id="send-response">Send Response</button>
+                </div>
+              </div>
+
+              <div class="composer-panel voice-mode" id="voice-composer" hidden>
+                <div class="voice-grid">
+                  <div>
+                    <p class="composer-title">Speak your response</p>
+                    <p class="recording-state" id="recording-state">Ready to record</p>
+                  </div>
+                  <button class="mic-button" type="button" id="record-button" aria-label="Record response">
+                    <span class="mic-mark" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="transcript-preview">
+                  <p class="message-label">Transcript preview</p>
+                  <p id="transcript-text">Press record to simulate a spoken response.</p>
+                </div>
+                <div class="button-row split-actions">
+                  <button class="button secondary" type="button" id="type-instead">Type instead</button>
+                  <div class="right-actions">
+                    <button class="button secondary" type="button" id="try-again">Try Again</button>
+                    <button class="button primary" type="button" id="use-response">Use This Response</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <aside class="coach-panel" aria-label="Coach Doubtfire coaching panel">
+              <div class="rose-line"></div>
+              <h3>Coach Doubtfire</h3>
+              <p>Start with connection, then set the boundary. Keep your tone calm and give the student a clear next step.</p>
+              <div class="coach-section">
+                <h4>Try this move:</h4>
+                <p class="sample-line">&ldquo;I&rsquo;ll check in with you in two minutes.&rdquo;</p>
+              </div>
+              <div class="coach-section">
+                <h4>Tone note:</h4>
+                <p>Slow down slightly so the redirection sounds calm, not frustrated.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-debrief" aria-labelledby="debrief-title">
+        <div class="debrief-shell">
+          <div class="screen-heading">
+            <p class="eyebrow">Debrief</p>
+            <h2 id="debrief-title">Nice work practicing that moment.</h2>
+            <p class="lede">You acknowledged the student, set a clear boundary, and kept the focus on learning.</p>
+          </div>
+
+          <div class="debrief-grid">
+            <section class="debrief-section">
+              <h3>What worked:</h3>
+              <p>You started with connection before redirecting the behavior.</p>
+            </section>
+            <section class="debrief-section">
+              <h3>Try next time:</h3>
+              <p>Add a clear next step so the student knows exactly what to do next.</p>
+            </section>
+            <section class="debrief-section phrase">
+              <h3>Suggested phrase:</h3>
+              <p>&ldquo;I&rsquo;ll check in with you in two minutes. For now, track with the class.&rdquo;</p>
+            </section>
+          </div>
+
+          <fieldset class="confidence-check">
+            <legend>Confidence check:</legend>
+            <p>How confident do you feel trying this tomorrow?</p>
+            <div class="choice-row">
+              <label><input type="radio" name="confidence"> <span>Not yet</span></label>
+              <label><input type="radio" name="confidence" checked> <span>Getting there</span></label>
+              <label><input type="radio" name="confidence"> <span>Ready to try</span></label>
+            </div>
+          </fieldset>
+
+          <div class="button-row split-actions">
+            <button class="button secondary" type="button" data-go="roleplay">Practice Again</button>
+            <button class="button secondary" type="button" data-go="intake">Try New Scenario</button>
+            <button class="button primary" type="button" id="finish-button">Finish</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

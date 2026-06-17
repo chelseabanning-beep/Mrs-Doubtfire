@@ -1,0 +1,740 @@
+:root {
+  --slate-900: #1f2830;
+  --slate-800: #29343d;
+  --slate-700: #34414b;
+  --warm-white: #f7f8f5;
+  --panel: #eef3f6;
+  --panel-strong: #ffffff;
+  --silver: #c6ccd1;
+  --silver-dark: #8c969e;
+  --blue: #7faed4;
+  --blue-dark: #487ca8;
+  --blue-soft: #dcecf8;
+  --rose: #b9838d;
+  --text: #1d2730;
+  --muted: #5f6c76;
+  --shadow: 0 24px 70px rgba(7, 12, 17, 0.28);
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+    var(--slate-900);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 40px;
+}
+
+.brand-bar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--warm-white);
+  margin-bottom: 22px;
+}
+
+.brand-bar h1 {
+  margin: 4px 0 0;
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  line-height: 0.96;
+  font-weight: 730;
+  letter-spacing: 0;
+}
+
+.eyebrow {
+  margin: 0;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 720;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.screen-rail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.rail-dot {
+  min-width: 86px;
+  padding: 8px 11px;
+  border: 1px solid rgba(247, 248, 245, 0.22);
+  color: rgba(247, 248, 245, 0.72);
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.84rem;
+}
+
+.rail-dot.is-active {
+  color: #ffffff;
+  border-color: rgba(127, 174, 212, 0.8);
+  background: rgba(127, 174, 212, 0.18);
+}
+
+.screen {
+  display: none;
+}
+
+.screen.is-active {
+  display: block;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.intro-panel,
+.form-panel,
+.review-shell,
+.roleplay-shell,
+.debrief-shell {
+  border: 1px solid var(--silver);
+  background: var(--warm-white);
+  box-shadow: var(--shadow);
+}
+
+.intro-panel {
+  min-height: 560px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-panel .eyebrow,
+.screen-heading .eyebrow,
+.roleplay-header .eyebrow {
+  color: var(--blue-dark);
+}
+
+h2,
+h3,
+h4,
+p {
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  margin: 10px 0 14px;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.lede {
+  margin: 0;
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.quiet-note {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--silver);
+  color: var(--slate-700);
+  line-height: 1.55;
+}
+
+.form-panel {
+  padding: 28px;
+  display: grid;
+  gap: 12px;
+}
+
+label,
+legend {
+  color: var(--slate-800);
+  font-weight: 700;
+}
+
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--silver);
+  background: var(--panel-strong);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 13px 14px;
+  outline: none;
+}
+
+select:focus,
+textarea:focus {
+  border-color: var(--blue-dark);
+  box-shadow: 0 0 0 3px rgba(127, 174, 212, 0.28);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.45;
+}
+
+.segmented-field,
+.confidence-check {
+  margin: 6px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.segment {
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  color: var(--muted);
+  text-align: center;
+  border-right: 1px solid var(--silver);
+}
+
+.segment:last-child {
+  border-right: 0;
+}
+
+.segment input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segment.is-selected {
+  color: #ffffff;
+  background: var(--blue-dark);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.button {
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 11px 17px;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.button.primary {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  color: #ffffff;
+}
+
+.button.primary:hover {
+  background: #3f719a;
+}
+
+.button.secondary {
+  background: #ffffff;
+  border-color: var(--silver);
+  color: var(--slate-800);
+}
+
+.button.secondary:hover {
+  border-color: var(--silver-dark);
+}
+
+.review-shell,
+.debrief-shell {
+  padding: 34px;
+}
+
+.screen-heading {
+  margin-bottom: 22px;
+}
+
+.screen-heading h2 {
+  max-width: 760px;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--silver);
+  background: var(--panel);
+  color: var(--slate-700);
+  font-size: 0.86rem;
+  font-weight: 760;
+}
+
+.review-list {
+  border-top: 1px solid var(--silver);
+}
+
+.review-list section {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--silver);
+}
+
+.review-list h3,
+.debrief-section h3 {
+  margin: 0;
+  color: var(--slate-800);
+  font-size: 1rem;
+}
+
+.review-list p,
+.debrief-section p {
+  margin: 0;
+  color: var(--slate-700);
+  line-height: 1.55;
+}
+
+.safety-note {
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--rose);
+  background: #ffffff;
+  color: var(--slate-700);
+  line-height: 1.45;
+}
+
+.split-actions {
+  justify-content: space-between;
+}
+
+.left-actions,
+.right-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.roleplay-shell {
+  background: var(--panel);
+}
+
+.roleplay-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--silver);
+  background: var(--warm-white);
+}
+
+.roleplay-header h2 {
+  margin: 6px 0 0;
+  font-size: clamp(1.45rem, 3vw, 2.5rem);
+}
+
+.header-facts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  color: var(--slate-700);
+  font-weight: 720;
+  text-align: right;
+}
+
+.roleplay-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  min-height: 610px;
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-width: 0;
+  border-right: 1px solid var(--silver);
+}
+
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 26px;
+  overflow: auto;
+}
+
+.message-row {
+  display: grid;
+  gap: 6px;
+  max-width: min(78%, 640px);
+}
+
+.message-row.teacher {
+  align-self: flex-end;
+  justify-items: end;
+}
+
+.message-row.student {
+  align-self: flex-start;
+}
+
+.message-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 780;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.message-bubble {
+  padding: 14px 16px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  line-height: 1.48;
+}
+
+.student .message-bubble {
+  background: #eceff1;
+  color: var(--slate-800);
+}
+
+.teacher .message-bubble {
+  background: var(--blue-soft);
+  border-color: #a9c9e2;
+  color: #173247;
+}
+
+.composer-panel {
+  padding: 18px 22px 22px;
+  border-top: 1px solid var(--silver);
+  background: var(--warm-white);
+}
+
+.composer-panel label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.composer-title {
+  margin: 0 0 6px;
+  color: var(--slate-800);
+  font-weight: 780;
+}
+
+.recording-state {
+  margin: 0;
+  color: var(--muted);
+}
+
+.mic-button {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid #9fc2dd;
+  background: var(--blue-dark);
+  display: grid;
+  place-items: center;
+}
+
+.mic-button.is-recording {
+  background: #315b7a;
+  box-shadow: 0 0 0 6px rgba(185, 131, 141, 0.22);
+}
+
+.mic-mark {
+  width: 20px;
+  height: 34px;
+  position: relative;
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+}
+
+.mic-mark::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  width: 24px;
+  height: 14px;
+  transform: translateX(-50%);
+  border: 3px solid #ffffff;
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+}
+
+.mic-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -21px;
+  width: 3px;
+  height: 10px;
+  transform: translateX(-50%);
+  background: #ffffff;
+}
+
+.transcript-preview {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid var(--silver);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.transcript-preview p:last-child {
+  margin: 8px 0 0;
+  color: var(--slate-700);
+  line-height: 1.5;
+}
+
+.coach-panel {
+  position: relative;
+  padding: 28px 24px;
+  background: #fbfcfa;
+}
+
+.rose-line {
+  width: 42px;
+  height: 4px;
+  background: var(--rose);
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.coach-panel h3 {
+  margin: 0 0 14px;
+  color: var(--slate-800);
+  font-size: 1.34rem;
+}
+
+.coach-panel p {
+  margin: 0;
+  color: var(--slate-700);
+  line-height: 1.55;
+}
+
+.coach-section {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--silver);
+}
+
+.coach-section h4 {
+  margin: 0 0 8px;
+  color: var(--slate-800);
+}
+
+.sample-line {
+  color: #173247;
+  font-weight: 760;
+}
+
+.debrief-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--silver);
+  border-left: 1px solid var(--silver);
+  margin-top: 26px;
+}
+
+.debrief-section {
+  min-height: 150px;
+  padding: 22px;
+  border-right: 1px solid var(--silver);
+  border-bottom: 1px solid var(--silver);
+  background: #ffffff;
+}
+
+.debrief-section.phrase {
+  grid-column: 1 / -1;
+  min-height: 112px;
+  background: var(--panel);
+}
+
+.debrief-section h3 {
+  margin-bottom: 10px;
+}
+
+.confidence-check {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--silver);
+}
+
+.confidence-check p {
+  margin: 8px 0 14px;
+  color: var(--slate-700);
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.choice-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid var(--silver);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--slate-700);
+}
+
+@media (max-width: 920px) {
+  .brand-bar,
+  .roleplay-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .screen-rail {
+    justify-content: flex-start;
+  }
+
+  .two-column,
+  .roleplay-layout,
+  .debrief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-panel {
+    min-height: auto;
+  }
+
+  .header-facts {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .chat-panel {
+    border-right: 0;
+    border-bottom: 1px solid var(--silver);
+  }
+
+  .roleplay-layout {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-shell {
+    width: min(100% - 18px, 1180px);
+    padding-top: 16px;
+  }
+
+  .brand-bar h1 {
+    font-size: 2.45rem;
+  }
+
+  .intro-panel,
+  .form-panel,
+  .review-shell,
+  .debrief-shell {
+    padding: 20px;
+  }
+
+  .roleplay-header,
+  .chat-thread,
+  .composer-panel,
+  .coach-panel {
+    padding: 18px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .review-list section {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .segmented {
+    grid-template-columns: 1fr;
+  }
+
+  .segment {
+    border-right: 0;
+    border-bottom: 1px solid var(--silver);
+  }
+
+  .segment:last-child {
+    border-bottom: 0;
+  }
+
+  .message-row {
+    max-width: 92%;
+  }
+
+  .split-actions,
+  .left-actions,
+  .right-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
