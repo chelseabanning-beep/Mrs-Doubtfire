@@ -165,10 +165,7 @@ const documentGuidance = {
 
 const intakeForm = document.querySelector("#intake-form");
 const challengeField = document.querySelector("#challenge-details");
-const momentField = document.querySelector("#classroom-moment");
 const urgencyField = document.querySelector("#urgency");
-const practiceGoalField = document.querySelector("#practice-goal");
-const practiceGoalLabel = document.querySelector("#practice-goal-field");
 const textComposer = document.querySelector("#text-composer");
 const voiceComposer = document.querySelector("#voice-composer");
 const teacherResponse = document.querySelector("#teacher-response");
@@ -226,12 +223,12 @@ function handleIntake(event) {
   const intake = {
     gradeBand: state.profile.gradeBand,
     challenge: challengeField.value.trim(),
-    moment: momentField.value.trim(),
+    moment: selectedPromptMoment(),
     urgency: urgencyField.value,
     helpMode: state.helpMode,
     skillGoal:
       state.helpMode === "roleplay"
-        ? practiceGoalField.value
+        ? selectedPromptSkillGoal()
         : state.helpMode === "parent"
           ? "parent-selection"
           : "information",
@@ -244,6 +241,9 @@ function handleIntake(event) {
   state.intake = intake;
   const triage = triageScenario(intake);
   state.triage = triage;
+  if (triage.skillGoal) {
+    state.intake.skillGoal = triage.skillGoal;
+  }
 
   if (triage.status === "clarify") {
     state.needsClarification = true;
@@ -305,12 +305,13 @@ function triageScenario(intake) {
   }
 
   const category = hasSensitiveContent ? "safety" : detectCategory(text);
+  const roleplayGoal = intake.skillGoal || suggestRoleplayGoal(category);
   const focus =
     intake.helpMode === "information"
       ? buildInformationFocus(category)
       : intake.helpMode === "parent"
         ? "Parent/guardian conversation option selected for this repeated pattern. This prototype does not generate that conversation yet."
-        : buildFocus(category, intake.skillGoal);
+        : buildFocus(category, roleplayGoal);
   const setupVerb =
     intake.helpMode === "information"
       ? "Review information for"
@@ -324,6 +325,7 @@ function triageScenario(intake) {
     urgency: intake.urgency,
     category,
     focus,
+    skillGoal: roleplayGoal,
     setup: `${setupVerb} ${intake.moment}. The student moment is: ${intake.challenge}`,
   };
 }
@@ -398,16 +400,6 @@ function setHelpMode(mode) {
   if (mode === "parent" && state.urgency !== "repeated-pattern") return;
 
   state.helpMode = mode;
-  const roleplay = mode === "roleplay";
-  practiceGoalLabel.classList.toggle("is-hidden", !roleplay);
-  practiceGoalField.classList.toggle("is-hidden", !roleplay);
-  practiceGoalField.required = roleplay;
-  practiceGoalField.disabled = !roleplay;
-
-  if (!roleplay) {
-    practiceGoalField.value = "";
-  }
-
   document.querySelectorAll("[data-help-mode]").forEach((button) => {
     const selected = button.dataset.helpMode === mode;
     button.classList.toggle("is-selected", selected);
@@ -449,14 +441,22 @@ function setOutputMode(mode) {
   }
 }
 
+function selectedPromptMoment() {
+  const prompt = standardPrompts[state.selectedPrompt];
+  return prompt?.moment || "Teacher-described classroom challenge";
+}
+
+function selectedPromptSkillGoal() {
+  const prompt = standardPrompts[state.selectedPrompt];
+  return prompt?.skillGoal || "";
+}
+
 function applyStandardPrompt(promptKey) {
   const prompt = standardPrompts[promptKey];
   if (!prompt) return;
 
   state.selectedPrompt = promptKey;
   challengeField.value = prompt.challenge;
-  momentField.value = prompt.moment;
-  practiceGoalField.value = prompt.skillGoal;
   document.querySelector("#clarify-box").hidden = true;
   document.querySelector("#clarify-answer").value = "";
   state.needsClarification = false;
@@ -549,7 +549,6 @@ function practiceFromInformation() {
   state.helpMode = "roleplay";
   setHelpMode("roleplay");
   const skillGoal = suggestRoleplayGoal(state.triage.category);
-  practiceGoalField.value = skillGoal;
   state.intake.helpMode = "roleplay";
   state.intake.skillGoal = skillGoal;
   state.triage = triageScenario(state.intake);

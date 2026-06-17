@@ -23,167 +23,148 @@
       </header>
 
       <section class="screen is-active" id="screen-intake" aria-labelledby="intake-title">
-        <div class="two-column intake-grid">
-          <div class="intro-panel">
+        <form class="form-panel intake-form-full" id="intake-form">
+          <div class="screen-heading">
             <p class="eyebrow">Teacher practice space</p>
-            <h2 id="intake-title">What classroom moment do you want help with?</h2>
-            <p class="lede">Describe the moment, choose the kind of help you want, and keep the support practical.</p>
-
-            <div class="profile-summary" aria-label="Teacher profile">
-              <p class="eyebrow">From profile</p>
-              <strong id="profile-name">Teacher profile</strong>
-              <span id="profile-grade">Grade level</span>
-            </div>
-
-            <div class="quiet-note">
-              This is a practice and reflection space, not an evaluation. Keep student names, private identifiers, and sensitive details out of the tool.
-            </div>
+            <h2 id="intake-title">Classroom support intake</h2>
+            <p class="lede">Select the challenge, add details, and choose the kind of support you want.</p>
           </div>
 
-          <form class="form-panel" id="intake-form">
-            <section class="form-section" aria-labelledby="format-title">
-              <div>
-                <p class="eyebrow">Session format</p>
-                <h3 id="format-title">Choose text or voice</h3>
-              </div>
-              <div class="format-columns">
-                <fieldset>
-                  <legend>Teacher input</legend>
-                  <div class="choice-grid two">
-                    <button class="option-card is-selected" type="button" data-input-mode="text" aria-pressed="true">
-                      <strong>Text</strong>
-                      <span>Type teacher responses.</span>
-                    </button>
-                    <button class="option-card" type="button" data-input-mode="voice" aria-pressed="false">
-                      <strong>Voice</strong>
-                      <span>Speak, then review the draft.</span>
-                    </button>
-                  </div>
-                </fieldset>
+          <div class="profile-summary" aria-label="Teacher profile">
+            <p class="eyebrow">From profile</p>
+            <strong id="profile-name">Teacher profile</strong>
+            <span id="profile-grade">Grade level</span>
+          </div>
 
-                <fieldset>
-                  <legend>Coach output</legend>
-                  <div class="choice-grid two">
-                    <button class="option-card is-selected" type="button" data-output-mode="text" aria-pressed="true">
-                      <strong>Text</strong>
-                      <span>Read Coach messages.</span>
-                    </button>
-                    <button class="option-card" type="button" data-output-mode="voice" aria-pressed="false">
-                      <strong>Voice</strong>
-                      <span>Hear the opening greeting.</span>
-                    </button>
-                  </div>
-                </fieldset>
-              </div>
-            </section>
+          <div class="quiet-note">
+            This is a practice and reflection space, not an evaluation. Keep student names, private identifiers, and sensitive details out of the tool.
+          </div>
 
-            <section class="form-section" aria-labelledby="challenge-title">
-              <div>
-                <p class="eyebrow">Challenge or behavior</p>
-                <h3 id="challenge-title">Choose a common classroom challenge</h3>
-              </div>
-              <div class="choice-grid three">
-                <button class="option-card" type="button" data-prompt="calling-out">
-                  <strong>Calling out</strong>
-                  <span>Student blurts answers or comments.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="off-task">
-                  <strong>Off task</strong>
-                  <span>Student avoids or drifts from work.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="work-refusal">
-                  <strong>Work refusal</strong>
-                  <span>Student says no or shuts down.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="side-conversation">
-                  <strong>Side conversation</strong>
-                  <span>Students talk during instruction.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="transition">
-                  <strong>Transition trouble</strong>
-                  <span>Class loses momentum between activities.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="peer-conflict">
-                  <strong>Peer conflict</strong>
-                  <span>Students argue or blame each other.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="disrespect">
-                  <strong>Disrespectful response</strong>
-                  <span>Student talks back or challenges direction.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="attention-seeking">
-                  <strong>Attention seeking</strong>
-                  <span>Student tries to get peers to react.</span>
-                </button>
-                <button class="option-card" type="button" data-prompt="other">
-                  <strong>Other</strong>
-                  <span>Describe a different challenge.</span>
-                </button>
-              </div>
-            </section>
-
-            <label for="challenge-details">Details</label>
-            <textarea
-              id="challenge-details"
-              name="challenge-details"
-              rows="5"
-              placeholder="Add a few details about what the student or class is doing. Keep names and sensitive details out."
-              required
-            ></textarea>
-
-            <label for="classroom-moment">Classroom moment</label>
-            <input id="classroom-moment" name="classroom-moment" type="text" placeholder="Example: Whole-group math instruction after lunch" required>
-
-            <label for="urgency">When did it happen?</label>
-            <select id="urgency" name="urgency" required>
-              <option value="current">Happening right now</option>
-              <option value="today">Earlier today</option>
-              <option value="week">This week</option>
-              <option value="past">A past situation</option>
-              <option value="repeated-pattern">A repeated pattern</option>
-            </select>
-
-            <section class="form-section" aria-labelledby="support-title">
-              <div>
-                <p class="eyebrow">What do you want help with?</p>
-                <h3 id="support-title">Choose support type</h3>
-              </div>
-              <div class="choice-grid support-grid" id="support-mode-grid">
-                <button class="option-card is-selected" type="button" data-help-mode="roleplay" aria-pressed="true">
-                  <strong>Roleplay</strong>
-                  <span>Practice what to say with a student response and mentor tip.</span>
-                </button>
-                <button class="option-card" type="button" data-help-mode="information" aria-pressed="false">
-                  <strong>Information</strong>
-                  <span>Review policy, procedure, and project-document guidance.</span>
-                </button>
-                <button class="option-card is-hidden" id="parent-mode-card" type="button" data-help-mode="parent" aria-pressed="false">
-                  <strong>Parent/guardian conversation</strong>
-                  <span>Select this as a possible follow-up route for the repeated pattern.</span>
-                </button>
-              </div>
-            </section>
-
-            <label id="practice-goal-field" for="practice-goal">Roleplay focus</label>
-            <select id="practice-goal" name="practice-goal" required>
-              <option value="">Choose one</option>
-              <option value="connect-boundary-redirect">Connect, boundary, redirect</option>
-              <option value="de-escalation">De-escalation</option>
-              <option value="relationship-repair">Relationship repair</option>
-              <option value="peer-mediation">Peer conflict mediation</option>
-            </select>
-
-            <div id="clarify-box" class="clarify-box" hidden>
-              <label for="clarify-answer" id="clarify-question">Add one detail</label>
-              <input id="clarify-answer" type="text">
+          <section class="form-section" aria-labelledby="challenge-title">
+            <div>
+              <p class="eyebrow">Challenge or behavior</p>
+              <h3 id="challenge-title">Choose a common classroom challenge</h3>
             </div>
-
-            <div class="button-row">
-              <button class="button secondary" type="button" id="use-example">Use example scenario</button>
-              <button class="button primary" type="submit">Build Support</button>
+            <div class="choice-grid three">
+              <button class="option-card" type="button" data-prompt="calling-out">
+                <strong>Calling out</strong>
+                <span>Student blurts answers or comments.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="off-task">
+                <strong>Off task</strong>
+                <span>Student avoids or drifts from work.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="work-refusal">
+                <strong>Work refusal</strong>
+                <span>Student says no or shuts down.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="side-conversation">
+                <strong>Side conversation</strong>
+                <span>Students talk during instruction.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="transition">
+                <strong>Transition trouble</strong>
+                <span>Class loses momentum between activities.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="peer-conflict">
+                <strong>Peer conflict</strong>
+                <span>Students argue or blame each other.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="disrespect">
+                <strong>Disrespectful response</strong>
+                <span>Student talks back or challenges direction.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="attention-seeking">
+                <strong>Attention seeking</strong>
+                <span>Student tries to get peers to react.</span>
+              </button>
+              <button class="option-card" type="button" data-prompt="other">
+                <strong>Other</strong>
+                <span>Describe a different challenge.</span>
+              </button>
             </div>
-          </form>
-        </div>
+          </section>
+
+          <section class="form-section format-options" aria-label="Text and voice options">
+            <div class="format-columns">
+              <fieldset>
+                <legend>Teacher input</legend>
+                <div class="choice-grid two">
+                  <button class="option-card is-selected" type="button" data-input-mode="text" aria-pressed="true">
+                    <strong>Text</strong>
+                    <span>Type teacher responses.</span>
+                  </button>
+                  <button class="option-card" type="button" data-input-mode="voice" aria-pressed="false">
+                    <strong>Voice</strong>
+                    <span>Speak, then review the draft.</span>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Coach output</legend>
+                <div class="choice-grid two">
+                  <button class="option-card is-selected" type="button" data-output-mode="text" aria-pressed="true">
+                    <strong>Text</strong>
+                    <span>Read Coach messages.</span>
+                  </button>
+                  <button class="option-card" type="button" data-output-mode="voice" aria-pressed="false">
+                    <strong>Voice</strong>
+                    <span>Hear the opening greeting.</span>
+                  </button>
+                </div>
+              </fieldset>
+            </div>
+          </section>
+
+          <label for="challenge-details">Details</label>
+          <textarea
+            id="challenge-details"
+            name="challenge-details"
+            rows="5"
+            placeholder="Add a few details about what the student or class is doing. Keep names and sensitive details out."
+            required
+          ></textarea>
+
+          <label for="urgency">When did it happen?</label>
+          <select id="urgency" name="urgency" required>
+            <option value="current">Happening right now</option>
+            <option value="today">Earlier today</option>
+            <option value="week">This week</option>
+            <option value="past">A past situation</option>
+            <option value="repeated-pattern">A repeated pattern</option>
+          </select>
+
+          <section class="form-section" aria-labelledby="support-title">
+            <div>
+              <h3 id="support-title">Choose support type</h3>
+            </div>
+            <div class="choice-grid support-grid" id="support-mode-grid">
+              <button class="option-card is-selected" type="button" data-help-mode="roleplay" aria-pressed="true">
+                <strong>Roleplay</strong>
+                <span>Practice what to say with a student response and mentor tip.</span>
+              </button>
+              <button class="option-card" type="button" data-help-mode="information" aria-pressed="false">
+                <strong>Information</strong>
+                <span>Review policy, procedure, and project-document guidance.</span>
+              </button>
+              <button class="option-card is-hidden" id="parent-mode-card" type="button" data-help-mode="parent" aria-pressed="false">
+                <strong>Parent/guardian conversation</strong>
+                <span>Select this as a possible follow-up route for the repeated pattern.</span>
+              </button>
+            </div>
+          </section>
+
+          <div id="clarify-box" class="clarify-box" hidden>
+            <label for="clarify-answer" id="clarify-question">Add one detail</label>
+            <input id="clarify-answer" type="text">
+          </div>
+
+          <div class="button-row">
+            <button class="button secondary" type="button" id="use-example">Use example scenario</button>
+            <button class="button primary" type="submit">Build Support</button>
+          </div>
+        </form>
       </section>
 
       <section class="screen" id="screen-confirm" aria-labelledby="confirm-title">

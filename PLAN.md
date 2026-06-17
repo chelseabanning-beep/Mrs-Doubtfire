@@ -8,7 +8,7 @@ Primary promise: **Confidence to teach.**
 ## Key Changes
 - Replace the preset-only scenario model with a guided custom scenario intake.
 - Teacher profile stores teacher name and grade/grade band, so those are not asked each time help is needed.
-- Teacher enters only session-specific details: behavior/challenge, classroom moment, urgency, support type, and roleplay focus when roleplay is selected.
+- Teacher enters only session-specific details: behavior/challenge details, urgency, and support type.
 - Teacher can choose from easy-select challenge options for standard classroom issues, choose `Other`, and add/edit details in their own words.
 - Teacher chooses when the situation happened, including whether it is `A repeated pattern`.
 - Teacher chooses whether they want `Roleplay` practice or `Information` from policies, procedures, and other documents added to the project.
@@ -27,7 +27,7 @@ Primary promise: **Confidence to teach.**
 - Ask whether the teacher wants roleplay practice or information. Roleplay uses `Student` and `Coach` turns; information summarizes relevant project-document guidance and sources.
 - If `A repeated pattern` is selected, reveal a parent/guardian conversation option for the teacher to select. Do not generate the parent conversation in this prototype.
 - If the teacher input is vague, the tool asks one clarifying question.
-- The tool creates a short setup: category, focus, and what the teacher will practice or review.
+- The tool creates a short setup from the selected challenge, category, focus, and what the teacher will practice or review.
 - At the start of a help session, Coach greets the teacher using the selected output format. Teacher replies can use the selected input format.
 - Teacher practices with labeled `Student` and `Coach` messages, using either text input or browser voice input for teacher replies.
 - Parent/guardian conversation is only captured as a selected route for now; the actual parent-focused conversation flow is not created yet.

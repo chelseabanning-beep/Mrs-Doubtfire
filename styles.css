@@ -197,6 +197,11 @@ h2 {
   gap: 12px;
 }
 
+.intake-form-full {
+  min-height: calc(100vh - 150px);
+  width: 100%;
+}
+
 .form-section {
   display: grid;
   gap: 12px;
