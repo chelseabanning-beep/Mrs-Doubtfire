@@ -9,9 +9,9 @@ Classroom Coach is a planned web app where new teachers practice common classroo
 - Shows the privacy reminder before the teacher describes what happened.
 - Offers quick-select challenge options, including `Other`, with editable details.
 - Adds a microphone inside the details box for voice entry, while keeping the dictated text editable.
-- Lets the teacher choose when the situation happened, including `A repeated pattern`.
+- Lets the teacher choose whether the situation is a `Single Occurrence` or `Repeated Occurrence`.
 - Lets the teacher choose `Roleplay` or `Information` from policy/procedure documents.
-- Reveals a parent/guardian conversation option when `A repeated pattern` is selected.
+- Reveals a parent/guardian conversation option when `Repeated Occurrence` is selected.
 - Records the parent/guardian conversation option as a selected route, but does not create that conversation yet.
 - Greets the teacher at the start of the help session.
 - Runs a short teacher-only roleplay with `Student` and `Coach` messages.

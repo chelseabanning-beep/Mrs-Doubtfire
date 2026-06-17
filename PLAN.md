@@ -1,7 +1,7 @@
 # Classroom Coach Revised Plan
 
 ## Summary
-Build a calm, professional web app where new teachers enter their own classroom challenge, then Classroom Coach turns it into safe support: roleplay practice, project-document guidance, or a future parent/guardian conversation route for repeated patterns.
+Build a calm, professional web app where new teachers enter their own classroom challenge, then Classroom Coach turns it into safe support: roleplay practice, project-document guidance, or a future parent/guardian conversation route for repeated occurrences.
 
 Primary promise: **Confidence to teach.**
 
@@ -10,9 +10,9 @@ Primary promise: **Confidence to teach.**
 - Teacher profile stores teacher name and grade/grade band, so those are not asked each time help is needed.
 - Teacher enters only session-specific details: behavior/challenge details, urgency, and support type.
 - Teacher can choose from easy-select challenge options for standard classroom issues, choose `Other`, and add/edit details in their own words.
-- Teacher chooses when the situation happened, including whether it is `A repeated pattern`.
+- Teacher chooses whether the situation is a `Single Occurrence` or `Repeated Occurrence`.
 - Teacher chooses whether they want `Roleplay` practice or `Information` from policies, procedures, and other documents added to the project.
-- If the situation is `A repeated pattern`, the teacher can also select `Parent/guardian conversation` as a possible follow-up route.
+- If the situation is `Repeated Occurrence`, the teacher can also select `Parent/guardian conversation` as a possible follow-up route.
 - The parent/guardian conversation route is selectable only; the actual parent conversation will be created later.
 - Unsupported or sensitive scenarios are redirected to human/policy support instead of roleplayed.
 - Keep practice teacher-only, fictionalized/de-identified, and unsaved. Teachers are told not to enter student names or sensitive details.
@@ -23,9 +23,9 @@ Primary promise: **Confidence to teach.**
 - Show the no-student-names/privacy reminder as plain text before the teacher starts describing what happened.
 - Offer classroom challenge options such as calling out, off-task behavior, work refusal, side conversations, transition trouble, peer conflict, disrespectful responses, attention-seeking behavior, and `Other`.
 - Provide a microphone inside the details field so the teacher can dictate scenario details, then review/edit before continuing.
-- Ask when the situation happened: happening right now, earlier today, this week, a past situation, or a repeated pattern.
+- Ask when the situation happened with two options: `Single Occurrence` or `Repeated Occurrence`.
 - Ask whether the teacher wants roleplay practice or information. Roleplay uses `Student` and `Coach` turns; information summarizes relevant project-document guidance and sources.
-- If `A repeated pattern` is selected, reveal a parent/guardian conversation option for the teacher to select. Do not generate the parent conversation in this prototype.
+- If `Repeated Occurrence` is selected, reveal a parent/guardian conversation option for the teacher to select. Do not generate the parent conversation in this prototype.
 - If the teacher input is vague, the tool asks one clarifying question.
 - The tool creates a short setup from the selected challenge, category, focus, and what the teacher will practice or review.
 - At the start of a help session, Coach greets the teacher on screen.
@@ -53,7 +53,7 @@ Primary promise: **Confidence to teach.**
 - Profile check: teacher name and grade come from the profile, not the repeated help form.
 - Challenge option check: selecting a standard classroom issue prefills editable session details and a suggested response skill goal; choosing `Other` provides a blank detail space.
 - Details voice-entry check: the microphone appears inside the details box, can capture dictated details when supported by the browser, and leaves the text editable before support is built.
-- Repeated-pattern check: selecting `A repeated pattern` reveals the parent/guardian conversation option; choosing it records the selection and shows a short notice, without creating a parent conversation.
+- Repeated-occurrence check: selecting `Repeated Occurrence` reveals the parent/guardian conversation option; choosing it records the selection and shows a short notice, without creating a parent conversation.
 
 ## Assumptions
 - Demo case: teacher enters a calling-out-during-lesson scenario.

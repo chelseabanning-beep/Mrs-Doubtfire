@@ -90,15 +90,11 @@
               <span class="mic-mark" aria-hidden="true"></span>
             </button>
           </div>
-          <p class="field-hint" id="details-voice-status">Use the microphone to dictate details, then edit before building support.</p>
 
           <label for="urgency">When did it happen?</label>
           <select id="urgency" name="urgency" required>
-            <option value="current">Happening right now</option>
-            <option value="today">Earlier today</option>
-            <option value="week">This week</option>
-            <option value="past">A past situation</option>
-            <option value="repeated-pattern">A repeated pattern</option>
+            <option value="single">Single Occurrence</option>
+            <option value="repeated-pattern">Repeated Occurrence</option>
           </select>
 
           <section class="form-section" aria-labelledby="support-title">
@@ -116,7 +112,7 @@
               </button>
               <button class="option-card is-hidden" id="parent-mode-card" type="button" data-help-mode="parent" aria-pressed="false">
                 <strong>Parent/guardian conversation</strong>
-                <span>Select this as a possible follow-up route for the repeated pattern.</span>
+                <span>Select this as a possible follow-up route for the repeated occurrence.</span>
               </button>
             </div>
           </section>
@@ -143,7 +139,7 @@
           <div class="tag-row" aria-label="Scenario tags">
             <span class="tag" id="profile-tag">Profile</span>
             <span class="tag" id="support-tag">Roleplay</span>
-            <span class="tag" id="urgency-tag">Happening right now</span>
+            <span class="tag" id="urgency-tag">Single Occurrence</span>
             <span class="tag" id="format-tag">Text in, text out</span>
           </div>
 

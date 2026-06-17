@@ -16,7 +16,7 @@ const state = {
   inputMode: "text",
   outputMode: "text",
   helpMode: "roleplay",
-  urgency: "current",
+  urgency: "single",
   selectedPrompt: "",
   needsClarification: false,
   intake: {},
@@ -53,11 +53,8 @@ const helpModeLabels = {
 };
 
 const urgencyLabels = {
-  current: "Happening right now",
-  today: "Earlier today",
-  week: "This week",
-  past: "A past situation",
-  "repeated-pattern": "A repeated pattern",
+  single: "Single Occurrence",
+  "repeated-pattern": "Repeated Occurrence",
 };
 
 const standardPrompts = {
@@ -168,7 +165,6 @@ const documentGuidance = {
 const intakeForm = document.querySelector("#intake-form");
 const challengeField = document.querySelector("#challenge-details");
 const detailsMicButton = document.querySelector("#details-mic-button");
-const detailsVoiceStatus = document.querySelector("#details-voice-status");
 const urgencyField = document.querySelector("#urgency");
 const textComposer = document.querySelector("#text-composer");
 const voiceComposer = document.querySelector("#voice-composer");
@@ -306,7 +302,7 @@ function triageScenario(intake) {
     intake.helpMode === "information"
       ? buildInformationFocus(category)
       : intake.helpMode === "parent"
-        ? "Parent/guardian conversation option selected for this repeated pattern. This prototype does not generate that conversation yet."
+        ? "Parent/guardian conversation option selected for this repeated occurrence. This prototype does not generate that conversation yet."
         : buildFocus(category, roleplayGoal);
   const setupVerb =
     intake.helpMode === "information"
@@ -357,7 +353,7 @@ function buildInformationFocus(category) {
 function renderSetup(triage) {
   document.querySelector("#profile-tag").textContent = `${state.profile.teacherName}, ${state.profile.gradeLevel}`;
   document.querySelector("#support-tag").textContent = helpModeLabels[triage.helpMode] || helpModeLabels.roleplay;
-  document.querySelector("#urgency-tag").textContent = urgencyLabels[triage.urgency] || urgencyLabels.current;
+  document.querySelector("#urgency-tag").textContent = urgencyLabels[triage.urgency] || urgencyLabels.single;
   document.querySelector("#format-tag").textContent = `${capitalize(state.inputMode)} input, ${capitalize(state.outputMode)} output`;
   document.querySelector("#confirm-category").textContent = categoryLabels[triage.category];
   document.querySelector("#confirm-focus").textContent = triage.focus;
@@ -454,7 +450,7 @@ function startSelectedSupport() {
 
   if (state.triage?.helpMode === "parent") {
     showSupportNotice(
-      "Parent/guardian conversation option selected. This prototype flags the route for a repeated pattern, but does not create the parent conversation yet."
+      "Parent/guardian conversation option selected. This prototype flags the route for a repeated occurrence, but does not create the parent conversation yet."
     );
     return;
   }
@@ -733,7 +729,7 @@ function toggleDetailsVoiceInput() {
   const SpeechRecognition = getSpeechRecognition();
 
   if (!SpeechRecognition) {
-    detailsVoiceStatus.textContent = "Voice entry is not available in this browser. You can type details instead.";
+    updateDetailsVoiceStatus("Voice entry is not available in this browser. You can type details instead.");
     challengeField.focus();
     return;
   }
@@ -748,7 +744,7 @@ function toggleDetailsVoiceInput() {
       state.isListeningForDetails = true;
       detailsMicButton.classList.add("is-recording");
       detailsMicButton.setAttribute("aria-pressed", "true");
-      detailsVoiceStatus.textContent = "Listening for details. Avoid student names or private identifiers.";
+      updateDetailsVoiceStatus("Listening for details. Avoid student names or private identifiers.");
     };
 
     state.detailsRecognition.onresult = (event) => {
@@ -765,14 +761,14 @@ function toggleDetailsVoiceInput() {
       state.isListeningForDetails = false;
       detailsMicButton.classList.remove("is-recording");
       detailsMicButton.setAttribute("aria-pressed", "false");
-      detailsVoiceStatus.textContent = "Voice entry stopped. You can type or try the microphone again.";
+      updateDetailsVoiceStatus("Voice entry stopped. You can type or try the microphone again.");
     };
 
     state.detailsRecognition.onend = () => {
       state.isListeningForDetails = false;
       detailsMicButton.classList.remove("is-recording");
       detailsMicButton.setAttribute("aria-pressed", "false");
-      detailsVoiceStatus.textContent = "Review and edit the dictated details before building support.";
+      updateDetailsVoiceStatus("Review and edit the dictated details before building support.");
       challengeField.focus();
     };
   }
@@ -783,6 +779,10 @@ function toggleDetailsVoiceInput() {
     stopVoiceInput();
     state.detailsRecognition.start();
   }
+}
+
+function updateDetailsVoiceStatus(message) {
+  detailsMicButton.setAttribute("title", message);
 }
 
 function stopDetailsVoiceInput() {

@@ -337,13 +337,6 @@ textarea {
   height: 8px;
 }
 
-.field-hint {
-  margin: -4px 0 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
 .segmented-field,
 .confidence-check {
   margin: 6px 0 0;
